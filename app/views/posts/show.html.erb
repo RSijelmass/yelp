@@ -1,0 +1,36 @@
+<html>
+	<body>
+		<%= link_to 'All Posts', posts_path %>
+		<p>
+			<strong>Title:</strong>
+			<%= @post.title %>
+		</p>
+		<p>
+			<strong>Text:</strong>
+			<%= @post.text %>
+		</p>
+
+		<h2>Comments</h2>
+		<% @post.comments.each do |comment| %>
+			<p> 
+				<strong><%= comment.commenter %> wrote: </strong></br>
+				<%= comment.body %>
+			</p>
+		<% end %>	
+
+		<h2>Add a comment:</h2>
+		<%= form_for([@post, @post.comments.build]) do |f| %>
+			<p>
+				<%= f.label :commenter %><br>
+				<%= f.text_field :commenter %>
+			</p>
+			<p>
+				<%= f.label :body %><br>
+				<%= f.text_area :body %>
+			</p>
+			<p>
+				<%= f.submit %>
+			</p>
+		<% end %>
+	</body>
+</html>
