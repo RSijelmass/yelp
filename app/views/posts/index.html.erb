@@ -21,7 +21,7 @@
 	 
 		<% @posts.each do |post| %>
 			<p>
-				<strong><%= post.title %></strong><br>
+			<strong> <%= User.find(post.user_id).email %>: <%= post.title %></strong><br>
 				<%= post.text %><br>
 				<%= link_to 'Show', post_path(post) %>
 			</p>
