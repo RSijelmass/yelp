@@ -16,9 +16,10 @@
 	<%= link_to 'New Post', new_post_path %>
 
 	<h1>Posts:</h1>
-		<% @posts.each do |post| %>
+		<% @posts.reverse.each do |post| %>
 			<p>
-			<strong> <%= User.find(post.user_id).email %>: <%= post.title %></strong><br>
+			<strong> <%= User.find(post.user_id).email %>: <%= post.title %></strong> 
+			<%= post.created_at.strftime("(at %H:%M %d/%m/%y)") %> <br>
 				<%= post.text %><br>
 				<%= link_to 'Show', post_path(post) %>
 			</p>

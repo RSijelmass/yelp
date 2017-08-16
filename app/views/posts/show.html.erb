@@ -11,7 +11,7 @@
 		</p>
 
 		<h2>Comments</h2>
-		<% @post.comments.each do |comment| %>
+		<% @post.comments.reverse.each do |comment| %>
 			<p> 
 				<strong><%= User.find(comment.user_id).email %> wrote: </strong></br>
 				<%= comment.body %>
