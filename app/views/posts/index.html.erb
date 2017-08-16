@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 	<% if signed_in? %>
 		Signed in as: <%= current_user.email %>
 		<%= button_to 'Sign out', sign_out_path, method: :delete %>
@@ -14,11 +13,9 @@
 		<% end %>
 	</div>
 
-
 	<%= link_to 'New Post', new_post_path %>
 
 	<h1>Posts:</h1>
-	 
 		<% @posts.each do |post| %>
 			<p>
 			<strong> <%= User.find(post.user_id).email %>: <%= post.title %></strong><br>
@@ -26,5 +23,4 @@
 				<%= link_to 'Show', post_path(post) %>
 			</p>
 		<% end %>
-	</table>
 	</html>
