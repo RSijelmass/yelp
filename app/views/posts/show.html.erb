@@ -2,13 +2,11 @@
 	<body>
 		<%= link_to 'All Posts', posts_path %>
 		<p>
-			<strong>Title:</strong>
-			<%= @post.title %>
+			<strong><%= @post.title %></strong><br>
+			<%= @post.text %><br>
+			Likes: <%= Like.where(post_id: @post.id).size %> <%= link_to 'Like', post_likes_path(@post), method: :post %>
 		</p>
-		<p>
-			<strong>Text:</strong>
-			<%= @post.text %>
-		</p>
+
 
 		<h2>Comments</h2>
 		<% @post.comments.reverse.each do |comment| %>
@@ -18,10 +16,9 @@
 			</p>
 		<% end %>	
 
-		<h2>Add a comment:</h2>
+		<h3>Add a comment:</h3>
 		<%= form_for([@post, @post.comments.build]) do |f| %>
 			<p>
-				<%= f.label :body %><br>
 				<%= f.text_area :body %>
 			</p>
 			<p>
