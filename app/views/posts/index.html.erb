@@ -19,9 +19,10 @@
 		<% @posts.reverse.each do |post| %>
 			<p>
 			<strong> <%= User.find(post.user_id).email %>: <%= post.title %></strong> 
-			<%= post.created_at.strftime("(at %H:%M %d/%m/%y)") %> <br>
+			<%= post.time_posted(post.created_at) %> <br>
 				<%= post.text %><br>
 				<%= link_to 'Show', post_path(post) %>
+				Likes: <%= Like.where(post_id: post.id).size %> <%= link_to 'Like', post_likes_path(post), method: :post %> 
 			</p>
 		<% end %>
 	</html>
