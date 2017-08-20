@@ -8,12 +8,9 @@ class LikesController < ApplicationController
 		@score = params[:score]
 
 		like_exists = Like.find_by(user_id: @user, post_id: @post)
-		if like_exists
-			like_exists.destroy
-		else
+		unless like_exists
 			@like = Like.new({user_id: @user, post_id: @post, score: @score})
 			@like.save!
-			p @like
 		end
 	end
 end
