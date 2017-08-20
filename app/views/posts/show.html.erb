@@ -4,7 +4,11 @@
 		<p>
 			<strong><%= @post.title %></strong><br>
 			<%= @post.text %><br>
-			Likes: <%= Like.where(post_id: @post.id).size %> <%= link_to 'Like', post_likes_path(@post), method: :post %>
+			Average rating: <%= Like.where(post_id: @post.id).sum(:score) / Like.where(post_id: @post.id).size %> 
+			Your rating: 
+			<% for i in 1..5 %>
+				<%= link_to i.to_s, post_likes_path(@post, score: i), method: :post %> 
+			<% end %>
 		</p>
 
 
