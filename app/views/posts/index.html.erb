@@ -22,7 +22,7 @@
 				<%= post.time_posted(post.created_at) %> <br>
 				<%= post.text %><br>
 				<% unless post.photo.file.nil? %>
-					<%= image_tag post.photo %> <!-- .thumb? -->
+					<%= image_tag post.photo.thumb %> <!-- .thumb? -->
 				<% end %></br>
 				<%= link_to 'Show', post_path(post) %>
 				Average rating: 
