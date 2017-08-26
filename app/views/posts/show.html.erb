@@ -8,7 +8,13 @@
 				<%= image_tag @post.photo %> <!-- .thumb? -->
 			<% end %></br>
 
-			Likes: <%= Like.where(post_id: @post.id).size %> 
+
+			Average Rating: 
+				<% if Like.where(post_id: @post.id).size > 0 %>
+					<%= Like.where(post_id: @post.id).sum(:score) / Like.where(post_id: @post.id).size %> 
+				<% else %>
+						n/a
+				<% end %>
 			Your rating: 
 			<% for i in 1..5 %>
 				<%= link_to i.to_s, post_likes_path(@post, score: i), method: :post %> 
