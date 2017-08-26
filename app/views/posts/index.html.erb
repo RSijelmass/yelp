@@ -22,7 +22,10 @@
 			<%= post.time_posted(post.created_at) %> <br>
 				<%= post.text %><br>
 				<%= link_to 'Show', post_path(post) %>
-				Average rating: <%= Like.where(post_id: post.id).sum(:score) / Like.where(post_id: post.id).size %> 
+				Average rating: 
+				<% if Like.where(post_id: post.id).sum(:score) > 0 %>
+				<%= Like.where(post_id: post.id).sum(:score) / Like.where(post_id: post.id).size %> 
+			<% end %>
 			Your rating: 
 			<% for i in 1..5 %>
 				<%= link_to i.to_s, post_likes_path(post, score: i), method: :post %> 
