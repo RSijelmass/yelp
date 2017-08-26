@@ -4,9 +4,16 @@
 		<p>
 			<strong><%= @post.title %></strong><br>
 			<%= @post.text %><br>
-			Likes: <%= Like.where(post_id: @post.id).size %> <%= link_to 'Like', post_likes_path(@post), method: :post %>
-		</p>
+			<% unless @post.photo.file.nil? %>
+				<%= image_tag @post.photo %> <!-- .thumb? -->
+			<% end %></br>
 
+			Likes: <%= Like.where(post_id: @post.id).size %> 
+			Your rating: 
+			<% for i in 1..5 %>
+				<%= link_to i.to_s, post_likes_path(@post, score: i), method: :post %> 
+			<% end %>
+		</p>
 
 		<h2>Comments</h2>
 		<% @post.comments.reverse.each do |comment| %>
