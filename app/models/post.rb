@@ -2,6 +2,8 @@ class Post < ApplicationRecord
 	belongs_to :user
 	has_many :comments
 
+	mount_uploader :photo, PhotoUploader
+
 	def time_posted(date_posted)
 		current_date = Time.now
 		time_elapsed = current_date - date_posted 
